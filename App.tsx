@@ -128,7 +128,6 @@ const MainApp: React.FC = () => {
         <nav className="flex gap-4">
           <Link to="/" className="text-slate-300 hover:text-purple-400 transition-colors">Home</Link>
           <Link to="/donate" className="text-slate-300 hover:text-purple-400 transition-colors">Donate</Link>
-          <Link to="/supporters" className="text-slate-300 hover:text-pink-400 transition-colors">Apoiadores</Link>
           <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors">Sobre</Link>
           {view === 'editing' && (
             <button 

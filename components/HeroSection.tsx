@@ -1,6 +1,5 @@
 ﻿import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { UploadIcon } from './icons';
-import { useTranslation } from 'react-i18next';
 
 // --- Constantes para melhor manutenção ---
 const API_BASE_URL = "http://localhost:8000/api";
@@ -46,7 +45,6 @@ const useDebounce = <T,>(value: T, delay: number): T => {
 
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
-    const { t } = useTranslation();
     const [isDragging, setIsDragging] = useState(false);
     const [videoLink, setVideoLink] = useState('');
     const [youtubeState, setYoutubeState] = useState<YouTubeState>({
@@ -211,19 +209,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
 
                 <div className="relative flex flex-col items-center justify-center space-y-6">
                     <div className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center shadow-lg transition-all duration-300 ${isDragging ? 'scale-110 shadow-purple-500/30' : 'group-hover:scale-105'}`}>
+
                         <UploadIcon className={`h-10 w-10 transition-colors duration-300 ${isDragging ? 'text-purple-400' : 'text-slate-400 group-hover:text-purple-400'}`} />
                     </div>
                     <div className="text-center space-y-2">
                         <h2 className="text-2xl font-bold text-white tracking-tight">
-                            {t('drag_and_drop')}
+                            Arraste e solte o vídeo aqui
                         </h2>
-                        <p className="text-slate-400 text-lg">{t('or')}</p>
+                        <p className="text-slate-400 text-lg">ou</p>
                     </div>
                     <button
                         onClick={() => fileInputRef.current?.click()}
                         className="group/btn relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
                     >
-                        <span className="relative z-10">{t('select_file')}</span>
+                        <span className="relative z-10">Selecionar arquivo</span>
                     </button>
                     <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="video/*" />
                 </div>
@@ -231,7 +230,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
             {/* Divider */}
             <div className="my-12 flex items-center justify-center">
                 <div className="flex-grow h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
-                <span className="mx-6 text-slate-400 font-medium bg-slate-800/50 px-4 py-2 rounded-full border border-slate-600/50">{t('or')}</span>
+                <span className="mx-6 text-slate-400 font-medium bg-slate-800/50 px-4 py-2 rounded-full border border-slate-600/50">ou</span>
                 <div className="flex-grow h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
             </div>
             {/* YouTube URL Input Area */}
@@ -239,7 +238,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
                 <div className="relative group">
                     <input
                         type="text"
-                        placeholder={t('paste_youtube_link')}
+                        placeholder="Cole o link do YouTube aqui"
                         className="w-full bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm border border-slate-600/50 text-white placeholder-slate-400 rounded-2xl p-5 pr-14 text-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50 transition-all duration-300 hover:border-slate-500/70"
                         value={videoLink}
                         onChange={handleLinkChange}
@@ -256,10 +255,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
                 {youtubeState.status === 'idle' && (
                     <div className="text-center px-4">
                         <p className="text-slate-400 text-sm">
-                            {t('upload_or_paste')}
+                            Faça upload de um vídeo ou cole o link do YouTube acima.
                         </p>
                         <p className="text-slate-500 text-xs mt-1">
-                            {t('after_download_upload')}
+                            Após baixar, o vídeo será enviado para processamento.
                         </p>
                     </div>
                 )}
@@ -282,7 +281,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
                             <div className="flex flex-col justify-between flex-1">
                                 <div className="space-y-2">
                                     <h3 className="text-2xl font-bold text-white leading-snug break-words">{youtubeState.meta.title}</h3>
-                                    <p className="text-slate-400">{t('channel')}: {youtubeState.meta.channelTitle}</p>
+                                    <p className="text-slate-400">Canal: {youtubeState.meta.channelTitle}</p>
                                 </div>
                                 <button
                                     onClick={handleDownloadFromUrl}
@@ -295,7 +294,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
                                         </div>
                                     )}
                                     <span className={`relative z-10 transition-all duration-300 ${isImporting ? 'ml-6' : ''}`}>
-                                        {isImporting ? t('downloading') : t('download_video')}
+                                        {isImporting ? 'Baixando...' : 'Baixar vídeo'}
                                     </span>
                                 </button>
                             </div>
