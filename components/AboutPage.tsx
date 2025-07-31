@@ -26,10 +26,10 @@ const AboutPage = () => {
     }, []);
 
     const stats = [
-        { icon: Users, value: "10K+", label: "Desenvolvedores Ativos" },
-        { icon: Star, value: "2.5K", label: "Stars no GitHub" },
-        { icon: Globe, value: "50+", label: "Países Alcançados" },
-        { icon: Rocket, value: "100+", label: "Projetos Criados" }
+        { icon: Users, value: "1", label: "Desenvolvedores Ativos" },
+        { icon: Star, value: "0", label: "Stars no GitHub" },
+        { icon: Globe, value: "1", label: "Países Alcançados" },
+        { icon: Rocket, value: "0", label: "Projetos Criados" }
     ];
 
     const features = [
@@ -63,7 +63,7 @@ const AboutPage = () => {
                 <section className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     <div className="inline-flex items-center space-x-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-2 mb-8">
                         <Code className="w-4 h-4 text-purple-400" />
-                        <span className="text-sm text-purple-400 font-medium">Sobre o NoxSub</span>
+                        <span className="text-sm text-purple-400 font-medium">Sobre o NoxMedia Studio</span>
                     </div>
 
                     <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
@@ -71,7 +71,7 @@ const AboutPage = () => {
                     </h1>
 
                     <p className="text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
-                        O NoxSub é mais do que apenas uma ferramenta - é um movimento para capacitar desenvolvedores e comunidades em todo o mundo. Ao contribuir com este projeto, você está ajudando a criar oportunidades, promover aprendizagem e democratizar o acesso à tecnologia.
+                        O NoxMedia Studio é mais do que apenas uma ferramenta - é um movimento para capacitar desenvolvedores e comunidades em todo o mundo. Ao contribuir com este projeto, você está ajudando a criar oportunidades, promover aprendizagem e democratizar o acesso à tecnologia.
                     </p>
                 </section>
 
@@ -122,21 +122,21 @@ const AboutPage = () => {
                                 <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
                                     <span className="font-medium text-white">Desenvolvimento Contínuo:</span>
-                                    <span className="text-slate-300"> Manter e aprimorar o NoxSub com novas funcionalidades e melhorias constantes.</span>
+                                    <span className="text-slate-300"> Manter e aprimorar o NoxMedia Studio com novas funcionalidades e melhorias constantes.</span>
                                 </div>
                             </div>
                             <div className="flex items-start space-x-3">
                                 <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
                                     <span className="font-medium text-white">Suporte à Comunidade:</span>
-                                    <span className="text-slate-300"> Oferecer suporte ativo e recursos educacionais para ajudar os usuários a aproveitarem ao máximo o NoxSub.</span>
+                                    <span className="text-slate-300"> Oferecer suporte ativo e recursos educacionais para ajudar os usuários a aproveitarem ao máximo o NoxMedia Studio.</span>
                                 </div>
                             </div>
                             <div className="flex items-start space-x-3">
                                 <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <div>
                                     <span className="font-medium text-white">Expansão do Acesso:</span>
-                                    <span className="text-slate-300"> Aumentar o alcance do NoxSub para desenvolvedores em todo o mundo, especialmente em regiões sub-representadas.</span>
+                                    <span className="text-slate-300"> Aumentar o alcance do NoxMedia Studio para desenvolvedores em todo o mundo, especialmente em regiões sub-representadas.</span>
                                 </div>
                             </div>
                         </div>
@@ -159,9 +159,9 @@ const AboutPage = () => {
                 {/* Features Grid */}
                 <section className="mb-20">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-white mb-4">Por Que Escolher o NoxSub?</h2>
+                        <h2 className="text-3xl font-bold text-white mb-4">Por Que Escolher o NoxMedia Studio?</h2>
                         <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-                            Descubra os diferenciais que fazem do NoxSub a escolha ideal para desenvolvedores
+                            Descubra os diferenciais que fazem do NoxMedia Studio a escolha ideal para desenvolvedores
                         </p>
                     </div>
 
@@ -200,17 +200,17 @@ const AboutPage = () => {
                     <div className="max-w-4xl mx-auto">
                         <div className="space-y-4">
                             <div className="flex items-center space-x-4 bg-slate-800/40 border border-slate-700/50 rounded-xl p-6">
-                                <div className="flex items-center justify-center w-12 h-12 bg-green-500/20 border-2 border-green-500 rounded-full">
-                                    <CheckCircle className="w-6 h-6 text-green-400" />
+                                <div className="flex items-center justify-center w-12 h-12 bg-yellow-500/20 border-2 border-yellow-500 rounded-full">
+                                    <Clock className="w-6 h-6 text-yellow-400" />
                                 </div>
                                 <div className="flex-grow">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <h4 className="text-lg font-semibold text-white">Interface Redesenhada</h4>
-                                            <p className="text-slate-400">Q3 2025</p>
+                                            <h4 className="text-lg font-semibold text-white">Frontend Incompleto</h4>
+                                            <p className="text-slate-400">70%</p>
                                         </div>
                                         <span className="px-3 py-1 bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 rounded-full text-sm font-medium">
-                                            Concluído
+                                            Em Progresso
                                         </span>
                                     </div>
                                 </div>
@@ -223,28 +223,11 @@ const AboutPage = () => {
                                 <div className="flex-grow">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <h4 className="text-lg font-semibold text-white">API REST Completa</h4>
-                                            <p className="text-slate-400">Q4 2025</p>
+                                            <h4 className="text-lg font-semibold text-white">Backend Incompleto</h4>
+                                            <p className="text-slate-400">70%</p>
                                         </div>
                                         <span className="px-3 py-1 bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 rounded-full text-sm font-medium">
                                             Em Progresso
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center space-x-4 bg-slate-800/40 border border-slate-700/50 rounded-xl p-6">
-                                <div className="flex items-center justify-center w-12 h-12 bg-blue-500/20 border-2 border-blue-500 rounded-full">
-                                    <Calendar className="w-6 h-6 text-blue-400" />
-                                </div>
-                                <div className="flex-grow">
-                                    <div className="flex items-center justify-between">
-                                        <div>
-                                            <h4 className="text-lg font-semibold text-white">Mobile App</h4>
-                                            <p className="text-slate-400">Q1 2026</p>
-                                        </div>
-                                        <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full text-sm font-medium">
-                                            Planejado
                                         </span>
                                     </div>
                                 </div>
@@ -257,8 +240,25 @@ const AboutPage = () => {
                                 <div className="flex-grow">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <h4 className="text-lg font-semibold text-white">Marketplace de Plugins</h4>
-                                            <p className="text-slate-400">Q2 2026</p>
+                                            <h4 className="text-lg font-semibold text-white">Mobile App</h4>
+                                            <p className="text-slate-400">Indefinido</p>
+                                        </div>
+                                        <span className="px-3 py-1 bg-purple-500/10 border border-purple-500/30 text-purple-400 rounded-full text-sm font-medium">
+                                            Futuro
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center space-x-4 bg-slate-800/40 border border-slate-700/50 rounded-xl p-6">
+                                <div className="flex items-center justify-center w-12 h-12 bg-purple-500/20 border-2 border-purple-500 rounded-full">
+                                    <Star className="w-6 h-6 text-purple-400" />
+                                </div>
+                                <div className="flex-grow">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <h4 className="text-lg font-semibold text-white">Desktop App</h4>
+                                            <p className="text-slate-400">Indefinido</p>
                                         </div>
                                         <span className="px-3 py-1 bg-purple-500/10 border border-purple-500/30 text-purple-400 rounded-full text-sm font-medium">
                                             Futuro
