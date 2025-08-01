@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Upload, Heart, Mail, Info, Eye, EyeOff } from 'lucide-react';
+import { Upload, Heart, Mail, Info } from 'lucide-react';
 
 // --- Constantes para melhor manutenção ---
 const API_BASE_URL = "http://localhost:8000/api";
@@ -67,7 +67,11 @@ const WelcomeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                         </p>
                         
                         <div className="flex items-start gap-3 p-3 bg-slate-700/30 rounded-xl border border-slate-600/20">
-                            <div className="w-4 h-4 rounded bg-purple-500 mt-1 flex-shrink-0"></div>
+                            <div className="w-4 h-4 mt-1 flex-shrink-0 text-purple-400">
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+                                    <path d="M14.5 17.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5zM16.5 6L14 8.5 9.5 4 7 6.5l2.5 4.5L7 13.5 9.5 16l4.5-2.5L16.5 16 19 13.5 16.5 9l2.5-2.5L16.5 4v2z"/>
+                                </svg>
+                            </div>
                             <div>
                                 <p className="font-semibold text-white mb-1">E o melhor: é tudo open source.</p>
                                 <p className="text-xs">O projeto é totalmente aberto, com o código disponível para quem quiser acompanhar, sugerir melhorias ou até colaborar diretamente. A transparência é parte do nosso compromisso com a comunidade.</p>
@@ -289,19 +293,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
 
     return (
         <div className="relative">
-            {/* Controle de Visibilidade - Só aparece quando o modal não está visível */}
-            {!showWelcome && (
-                <div className="fixed top-4 right-4 z-40">
-                    <button
-                        onClick={() => setShowContent(!showContent)}
-                        className="flex items-center gap-2 bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 text-white px-4 py-2 rounded-xl hover:bg-slate-700/80 transition-all duration-300"
-                    >
-                        {showContent ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                        <span className="text-sm">{showContent ? 'Ocultar' : 'Mostrar'}</span>
-                    </button>
-                </div>
-            )}
-
             {/* Modal de Boas-vindas */}
             {showWelcome && <WelcomeModal onClose={handleCloseWelcome} />}
 
