@@ -1,5 +1,5 @@
-﻿import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { UploadIcon } from './icons';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { Upload, Heart, Github, Mail, Info, Eye, EyeOff } from 'lucide-react';
 
 // --- Constantes para melhor manutenção ---
 const API_BASE_URL = "http://localhost:8000/api";
@@ -43,8 +43,110 @@ const useDebounce = <T,>(value: T, delay: number): T => {
     return debouncedValue;
 };
 
+// --- Componente da Tela de Boas-vindas ---
+const WelcomeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+            {/* Backdrop com blur */}
+            <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-md" onClick={onClose}></div>
+            
+            {/* Modal */}
+            <div className="relative z-10 w-full max-w-2xl mx-4 bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-slate-600/30 shadow-2xl transform animate-in zoom-in-95 duration-300">
+                <div className="p-8 space-y-6">
+                    {/* Header */}
+                    <div className="text-center space-y-4">
+                        <h1 className="text-3xl font-bold text-white">
+                            Bem-vindo ao NoxMedia Studio!
+                        </h1>
+                    </div>
+
+                    {/* Content */}
+                    <div className="space-y-4 text-slate-300 leading-relaxed">
+                        <p>
+                            Esse site ainda está em fase de desenvolvimento, mas a proposta é clara: criar ferramentas úteis e acessíveis para quem trabalha com conteúdo digital — como geração automática de legendas, edição de vídeos, transcrição e outras soluções pensadas para facilitar a vida de criadores, editores e profissionais da área.
+                        </p>
+                        
+                        <div className="flex items-start gap-3 p-4 bg-slate-700/30 rounded-xl border border-slate-600/20">
+                            <Github className="h-5 w-5 text-purple-400 mt-1 flex-shrink-0" />
+                            <div>
+                                <p className="font-semibold text-white mb-1">E o melhor: é tudo open source.</p>
+                                <p className="text-sm">O projeto é totalmente aberto, com o código disponível para quem quiser acompanhar, sugerir melhorias ou até colaborar diretamente. A transparência é parte do nosso compromisso com a comunidade.</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-3 p-4 bg-slate-700/30 rounded-xl border border-slate-600/20">
+                            <Heart className="h-5 w-5 text-red-400 mt-1 flex-shrink-0" />
+                            <div>
+                                <p className="font-semibold text-white mb-2">Sobre as doações:</p>
+                                <p className="text-sm mb-3">Se quiser apoiar o projeto, já é possível contribuir via PIX. Toda doação será usada para:</p>
+                                <ul className="text-sm space-y-1 text-slate-400">
+                                    <li>• Subir o site em um servidor (VPS) melhor e mais estável</li>
+                                    <li>• Registrar um domínio próprio</li>
+                                    <li>• Investir em recursos que aumentem a performance, segurança e funcionalidades da plataforma</li>
+                                    <li>• Melhorar a estrutura do projeto e manter tudo acessível para todos</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <p className="text-sm text-slate-400">
+                            Mesmo que você não possa doar, só de acompanhar, divulgar ou contribuir com ideias já está ajudando muito. Fique à vontade para explorar, acompanhar as atualizações e fazer parte dessa construção!
+                        </p>
+                    </div>
+
+                    {/* Links */}
+                    <div className="space-y-4">
+                        <div className="grid grid-cols-2 gap-3">
+                            <a 
+                                href="/donatepage" 
+                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-red-600/20 to-pink-600/20 hover:from-red-600/30 hover:to-pink-600/30 border border-red-600/30 rounded-xl transition-all duration-300 text-red-400 hover:text-red-300"
+                            >
+                                <Heart className="h-4 w-4" />
+                                <span className="text-sm font-medium">Doação</span>
+                            </a>
+                            <a 
+                                href="/aboutpage" 
+                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 hover:from-blue-600/30 hover:to-cyan-600/30 border border-blue-600/30 rounded-xl transition-all duration-300 text-blue-400 hover:text-blue-300"
+                            >
+                                <Info className="h-4 w-4" />
+                                <span className="text-sm font-medium">Sobre</span>
+                            </a>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-3">
+                            <a 
+                                href="#" 
+                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-purple-600/20 to-violet-600/20 hover:from-purple-600/30 hover:to-violet-600/30 border border-purple-600/30 rounded-xl transition-all duration-300 text-purple-400 hover:text-purple-300"
+                            >
+                                <Github className="h-4 w-4" />
+                                <span className="text-sm font-medium">GitHub</span>
+                            </a>
+                            <a 
+                                href="/editorpreview" 
+                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-green-600/20 to-emerald-600/20 hover:from-green-600/30 hover:to-emerald-600/30 border border-green-600/30 rounded-xl transition-all duration-300 text-green-400 hover:text-green-300"
+                            >
+                                <Eye className="h-4 w-4" />
+                                <span className="text-sm font-medium">Preview</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Close Button */}
+                    <div className="text-center pt-4">
+                        <button
+                            onClick={onClose}
+                            className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                        >
+                            Começar a usar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
+    // --- Estados existentes ---
     const [isDragging, setIsDragging] = useState(false);
     const [videoLink, setVideoLink] = useState('');
     const [youtubeState, setYoutubeState] = useState<YouTubeState>({
@@ -55,6 +157,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
     const [isImporting, setIsImporting] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const debouncedVideoLink = useDebounce(videoLink, 500);
+
+    // --- Novos estados para controle de visibilidade ---
+    const [showContent, setShowContent] = useState(false); // Controle principal
+    const [showWelcome, setShowWelcome] = useState(true); // Modal de boas-vindas
 
     // --- Funções Auxiliares ---
     const extractYouTubeId = (url: string): string | null => {
@@ -128,7 +234,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
         }
     }, [debouncedVideoLink]);
 
-
     const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newLink = e.target.value;
         setVideoLink(newLink);
@@ -193,121 +298,151 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
         }
     };
 
+    // --- Handler para fechar o modal de boas-vindas ---
+    const handleCloseWelcome = () => {
+        setShowWelcome(false);
+        setShowContent(true);
+    };
+
     return (
-        <div className="w-full max-w-5xl mx-auto px-4">
-            {/* Upload Area */}
-            <div
-                className={`relative group border-2 border-dashed rounded-3xl p-12 transition-all duration-500 ease-out ${isDragging
-                    ? 'border-purple-400 bg-gradient-to-br from-purple-900/30 to-blue-900/20 scale-105 shadow-2xl shadow-purple-500/20'
-                    : 'border-slate-600/60 hover:border-purple-500/60 bg-gradient-to-br from-slate-800/40 to-slate-900/60 hover:shadow-xl hover:shadow-purple-500/10'
-                    }`}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-            >
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-600/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="relative">
+            {/* Controle de Visibilidade */}
+            <div className="fixed top-4 right-4 z-40">
+                <button
+                    onClick={() => setShowContent(!showContent)}
+                    className="flex items-center gap-2 bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 text-white px-4 py-2 rounded-xl hover:bg-slate-700/80 transition-all duration-300"
+                >
+                    {showContent ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    <span className="text-sm">{showContent ? 'Ocultar' : 'Mostrar'}</span>
+                </button>
+            </div>
 
-                <div className="relative flex flex-col items-center justify-center space-y-6">
-                    <div className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center shadow-lg transition-all duration-300 ${isDragging ? 'scale-110 shadow-purple-500/30' : 'group-hover:scale-105'}`}>
+            {/* Modal de Boas-vindas */}
+            {showWelcome && <WelcomeModal onClose={handleCloseWelcome} />}
 
-                        <UploadIcon className={`h-10 w-10 transition-colors duration-300 ${isDragging ? 'text-purple-400' : 'text-slate-400 group-hover:text-purple-400'}`} />
-                    </div>
-                    <div className="text-center space-y-2">
-                        <h2 className="text-2xl font-bold text-white tracking-tight">
-                            Arraste e solte o vídeo aqui
-                        </h2>
-                        <p className="text-slate-400 text-lg">ou</p>
-                    </div>
-                    <button
-                        onClick={() => fileInputRef.current?.click()}
-                        className="group/btn relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+            {/* Conteúdo Principal */}
+            <div className={`transition-all duration-500 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                <div className="w-full max-w-5xl mx-auto px-4">
+                    {/* Upload Area */}
+                    <div
+                        className={`relative group border-2 border-dashed rounded-3xl p-12 transition-all duration-500 ease-out ${isDragging
+                            ? 'border-purple-400 bg-gradient-to-br from-purple-900/30 to-blue-900/20 scale-105 shadow-2xl shadow-purple-500/20'
+                            : 'border-slate-600/60 hover:border-purple-500/60 bg-gradient-to-br from-slate-800/40 to-slate-900/60 hover:shadow-xl hover:shadow-purple-500/10'
+                            }`}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
                     >
-                        <span className="relative z-10">Selecionar arquivo</span>
-                    </button>
-                    <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="video/*" />
-                </div>
-            </div>
-            {/* Divider */}
-            <div className="my-12 flex items-center justify-center">
-                <div className="flex-grow h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
-                <span className="mx-6 text-slate-400 font-medium bg-slate-800/50 px-4 py-2 rounded-full border border-slate-600/50">ou</span>
-                <div className="flex-grow h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
-            </div>
-            {/* YouTube URL Input Area */}
-            <div className="space-y-6">
-                <div className="relative group">
-                    <input
-                        type="text"
-                        placeholder="Cole o link do YouTube aqui"
-                        className="w-full bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm border border-slate-600/50 text-white placeholder-slate-400 rounded-2xl p-5 pr-14 text-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50 transition-all duration-300 hover:border-slate-500/70"
-                        value={videoLink}
-                        onChange={handleLinkChange}
-                        onPaste={handlePaste}
-                        disabled={isImporting}
-                    />
-                    {youtubeState.status === 'loadingMeta' && (
-                        <div className="absolute right-5 top-1/2 transform -translate-y-1/2">
-                            <div className="w-6 h-6 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-600/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <div className="relative flex flex-col items-center justify-center space-y-6">
+                            <div className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center shadow-lg transition-all duration-300 ${isDragging ? 'scale-110 shadow-purple-500/30' : 'group-hover:scale-105'}`}>
+                                <Upload className={`h-10 w-10 transition-colors duration-300 ${isDragging ? 'text-purple-400' : 'text-slate-400 group-hover:text-purple-400'}`} />
+                            </div>
+                            <div className="text-center space-y-2">
+                                <h2 className="text-2xl font-bold text-white tracking-tight">
+                                    Arraste e solte o vídeo aqui
+                                </h2>
+                                <p className="text-slate-400 text-lg">ou</p>
+                            </div>
+                            <button
+                                onClick={() => fileInputRef.current?.click()}
+                                className="group/btn relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                            >
+                                <span className="relative z-10">Selecionar arquivo</span>
+                            </button>
+                            <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="video/*" />
+                        </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="my-12 flex items-center justify-center">
+                        <div className="flex-grow h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+                        <span className="mx-6 text-slate-400 font-medium bg-slate-800/50 px-4 py-2 rounded-full border border-slate-600/50">ou</span>
+                        <div className="flex-grow h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+                    </div>
+
+                    {/* YouTube URL Input Area */}
+                    <div className="space-y-6">
+                        <div className="relative group">
+                            <input
+                                type="text"
+                                placeholder="Cole o link do YouTube aqui"
+                                className="w-full bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm border border-slate-600/50 text-white placeholder-slate-400 rounded-2xl p-5 pr-14 text-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50 transition-all duration-300 hover:border-slate-500/70"
+                                value={videoLink}
+                                onChange={handleLinkChange}
+                                onPaste={handlePaste}
+                                disabled={isImporting}
+                            />
+                            {youtubeState.status === 'loadingMeta' && (
+                                <div className="absolute right-5 top-1/2 transform -translate-y-1/2">
+                                    <div className="w-6 h-6 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Mini-tutorial */}
+                        {youtubeState.status === 'idle' && (
+                            <div className="text-center px-4">
+                                <p className="text-slate-400 text-sm">
+                                    Faça upload de um vídeo ou cole o link do YouTube acima.
+                                </p>
+                                <p className="text-slate-500 text-xs mt-1">
+                                    Após baixar, o vídeo será enviado para processamento.
+                                </p>
+                            </div>
+                        )}
+
+                        {/* Mensagem de Erro do YouTube */}
+                        {youtubeState.status === 'error' && youtubeState.error && (
+                            <div className="p-3 bg-red-900/30 border border-red-600/50 rounded-xl" aria-live="polite">
+                                <p className="text-red-400 text-center text-sm font-medium">{youtubeState.error}</p>
+                            </div>
+                        )}
+
+                        {/* Preview do Vídeo */}
+                        {youtubeState.status === 'success' && youtubeState.meta && (
+                            <div className="relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-600/30 shadow-2xl transform transition-all duration-500 animate-in slide-in-from-bottom-4">
+                                <div className="relative z-10 flex flex-col md:flex-row gap-8">
+                                    <div className="relative w-full md:w-96 aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-600/50 shadow-xl group/thumb flex-shrink-0">
+                                        <img src={youtubeState.meta.thumbnail} alt={`Thumbnail do vídeo ${youtubeState.meta.title}`} className="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-105" loading="lazy" />
+                                        <div className="absolute bottom-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                                            {youtubeState.meta.duration}
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col justify-between flex-1">
+                                        <div className="space-y-2">
+                                            <h3 className="text-2xl font-bold text-white leading-snug break-words">{youtubeState.meta.title}</h3>
+                                            <p className="text-slate-400">Canal: {youtubeState.meta.channelTitle}</p>
+                                        </div>
+                                        <button
+                                            onClick={handleDownloadFromUrl}
+                                            disabled={isImporting}
+                                            className="group/import mt-4 md:mt-auto self-start relative overflow-hidden bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 hover:shadow-lg hover:shadow-green-500/25 disabled:cursor-not-allowed"
+                                        >
+                                            {isImporting && (
+                                                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                                </div>
+                                            )}
+                                            <span className={`relative z-10 transition-all duration-300 ${isImporting ? 'ml-6' : ''}`}>
+                                                {isImporting ? 'Baixando...' : 'Baixar vídeo'}
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Erro Geral (do componente pai) */}
+                    {error && (
+                        <div className="mt-6 p-4 bg-red-900/30 border border-red-600/50 rounded-xl backdrop-blur-sm" aria-live="polite">
+                            <p className="text-red-400 text-center font-medium">{error}</p>
                         </div>
                     )}
                 </div>
-                {/* Mini-tutorial */}
-                {youtubeState.status === 'idle' && (
-                    <div className="text-center px-4">
-                        <p className="text-slate-400 text-sm">
-                            Faça upload de um vídeo ou cole o link do YouTube acima.
-                        </p>
-                        <p className="text-slate-500 text-xs mt-1">
-                            Após baixar, o vídeo será enviado para processamento.
-                        </p>
-                    </div>
-                )}
-                {/* Mensagem de Erro do YouTube */}
-                {youtubeState.status === 'error' && youtubeState.error && (
-                    <div className="p-3 bg-red-900/30 border border-red-600/50 rounded-xl" aria-live="polite">
-                        <p className="text-red-400 text-center text-sm font-medium">{youtubeState.error}</p>
-                    </div>
-                )}
-                {/* Preview do Vídeo */}
-                {youtubeState.status === 'success' && youtubeState.meta && (
-                    <div className="relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-600/30 shadow-2xl transform transition-all duration-500 animate-in slide-in-from-bottom-4">
-                        <div className="relative z-10 flex flex-col md:flex-row gap-8">
-                            <div className="relative w-full md:w-96 aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-600/50 shadow-xl group/thumb flex-shrink-0">
-                                <img src={youtubeState.meta.thumbnail} alt={`Thumbnail do vídeo ${youtubeState.meta.title}`} className="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-105" loading="lazy" />
-                                <div className="absolute bottom-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
-                                    {youtubeState.meta.duration}
-                                </div>
-                            </div>
-                            <div className="flex flex-col justify-between flex-1">
-                                <div className="space-y-2">
-                                    <h3 className="text-2xl font-bold text-white leading-snug break-words">{youtubeState.meta.title}</h3>
-                                    <p className="text-slate-400">Canal: {youtubeState.meta.channelTitle}</p>
-                                </div>
-                                <button
-                                    onClick={handleDownloadFromUrl}
-                                    disabled={isImporting}
-                                    className="group/import mt-4 md:mt-auto self-start relative overflow-hidden bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 hover:shadow-lg hover:shadow-green-500/25 disabled:cursor-not-allowed"
-                                >
-                                    {isImporting && (
-                                        <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                        </div>
-                                    )}
-                                    <span className={`relative z-10 transition-all duration-300 ${isImporting ? 'ml-6' : ''}`}>
-                                        {isImporting ? 'Baixando...' : 'Baixar vídeo'}
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
-            {/* Erro Geral (do componente pai) */}
-            {error && (
-                <div className="mt-6 p-4 bg-red-900/30 border border-red-600/50 rounded-xl backdrop-blur-sm" aria-live="polite">
-                    <p className="text-red-400 text-center font-medium">{error}</p>
-                </div>
-            )}
         </div>
     );
 };
