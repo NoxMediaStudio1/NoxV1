@@ -466,23 +466,13 @@ const DonatePage: React.FC = () => {
 
                             {/* Botão de Doação */}
                             <div className="border-t border-slate-700 pt-6">
-                                {isValidAmount && isValidEmail && !state.isProcessing ? (
-  <button
-    className="w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white hover:scale-105 shadow-lg hover:shadow-xl"
-    onClick={handleDonate}
-    type="button"
-  >
-    <div className="flex items-center justify-center space-x-2">
-      <Heart className="w-5 h-5" />
-      <span>Contribuir com R$ {finalAmount.toFixed(2)}</span>
-    </div>
-  </button>
-) : (
-  <div className="w-full py-4 px-6 rounded-xl font-semibold text-lg bg-slate-600 text-slate-300 opacity-50 cursor-not-allowed text-center select-none">
-    Apenas QRCode funcionando
-  </div>
-)}
-
+                                <button
+  className="w-full py-4 px-6 rounded-xl font-semibold text-lg bg-slate-600 text-slate-300 opacity-50 text-center select-none cursor-not-allowed"
+  disabled
+  type="button"
+>
+  Apenas QRCode funcionando
+</button>
 
                                 <div className="text-center text-sm text-slate-400 mt-4 space-y-1 flex flex-col items-center">
                                     <div className="flex items-center gap-2 justify-center">
