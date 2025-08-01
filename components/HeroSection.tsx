@@ -97,14 +97,14 @@ const WelcomeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     <div className="space-y-4">
                         <div className="grid grid-cols-2 gap-3">
                             <a 
-                                href="/donatepage" 
+                                href="/donate" 
                                 className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-red-600/20 to-pink-600/20 hover:from-red-600/30 hover:to-pink-600/30 border border-red-600/30 rounded-xl transition-all duration-300 text-red-400 hover:text-red-300"
                             >
                                 <Heart className="h-4 w-4" />
                                 <span className="text-sm font-medium">Doação</span>
                             </a>
                             <a 
-                                href="/aboutpage" 
+                                href="/about" 
                                 className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 hover:from-blue-600/30 hover:to-cyan-600/30 border border-blue-600/30 rounded-xl transition-all duration-300 text-blue-400 hover:text-blue-300"
                             >
                                 <Info className="h-4 w-4" />
@@ -120,13 +120,7 @@ const WelcomeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                                 <Github className="h-4 w-4" />
                                 <span className="text-sm font-medium">GitHub</span>
                             </a>
-                            <a 
-                                href="/editorpreview" 
-                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-green-600/20 to-emerald-600/20 hover:from-green-600/30 hover:to-emerald-600/30 border border-green-600/30 rounded-xl transition-all duration-300 text-green-400 hover:text-green-300"
-                            >
-                                <Eye className="h-4 w-4" />
-                                <span className="text-sm font-medium">Preview</span>
-                            </a>
+                    
                         </div>
                     </div>
 
