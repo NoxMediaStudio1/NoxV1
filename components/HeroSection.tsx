@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Upload, Heart, Github, Mail, Info, Eye, EyeOff } from 'lucide-react';
+import { Upload, Heart, Mail, Info, Eye, EyeOff } from 'lucide-react';
 
 // --- Constantes para melhor manutenção ---
 const API_BASE_URL = "http://localhost:8000/api";
@@ -50,36 +50,36 @@ const WelcomeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             {/* Backdrop com blur */}
             <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-md" onClick={onClose}></div>
             
-            {/* Modal */}
-            <div className="relative z-10 w-full max-w-2xl mx-4 bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-3xl border border-slate-600/30 shadow-2xl transform animate-in zoom-in-95 duration-300">
-                <div className="p-8 space-y-6">
+            {/* Modal - Reduzido o tamanho */}
+            <div className="relative z-10 w-full max-w-xl mx-4 bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-2xl border border-slate-600/30 shadow-2xl transform animate-in zoom-in-95 duration-300">
+                <div className="p-6 space-y-5">
                     {/* Header */}
-                    <div className="text-center space-y-4">
-                        <h1 className="text-3xl font-bold text-white">
+                    <div className="text-center space-y-3">
+                        <h1 className="text-2xl font-bold text-white">
                             Bem-vindo ao NoxMedia Studio!
                         </h1>
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4 text-slate-300 leading-relaxed">
+                    <div className="space-y-4 text-slate-300 leading-relaxed text-sm">
                         <p>
                             Esse site ainda está em fase de desenvolvimento, mas a proposta é clara: criar ferramentas úteis e acessíveis para quem trabalha com conteúdo digital — como geração automática de legendas, edição de vídeos, transcrição e outras soluções pensadas para facilitar a vida de criadores, editores e profissionais da área.
                         </p>
                         
-                        <div className="flex items-start gap-3 p-4 bg-slate-700/30 rounded-xl border border-slate-600/20">
-                            <Github className="h-5 w-5 text-purple-400 mt-1 flex-shrink-0" />
+                        <div className="flex items-start gap-3 p-3 bg-slate-700/30 rounded-xl border border-slate-600/20">
+                            <div className="w-4 h-4 rounded bg-purple-500 mt-1 flex-shrink-0"></div>
                             <div>
                                 <p className="font-semibold text-white mb-1">E o melhor: é tudo open source.</p>
-                                <p className="text-sm">O projeto é totalmente aberto, com o código disponível para quem quiser acompanhar, sugerir melhorias ou até colaborar diretamente. A transparência é parte do nosso compromisso com a comunidade.</p>
+                                <p className="text-xs">O projeto é totalmente aberto, com o código disponível para quem quiser acompanhar, sugerir melhorias ou até colaborar diretamente. A transparência é parte do nosso compromisso com a comunidade.</p>
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-3 p-4 bg-slate-700/30 rounded-xl border border-slate-600/20">
-                            <Heart className="h-5 w-5 text-red-400 mt-1 flex-shrink-0" />
+                        <div className="flex items-start gap-3 p-3 bg-slate-700/30 rounded-xl border border-slate-600/20">
+                            <Heart className="h-4 w-4 text-red-400 mt-1 flex-shrink-0" />
                             <div>
                                 <p className="font-semibold text-white mb-2">Sobre as doações:</p>
-                                <p className="text-sm mb-3">Se quiser apoiar o projeto, já é possível contribuir via PIX. Toda doação será usada para:</p>
-                                <ul className="text-sm space-y-1 text-slate-400">
+                                <p className="text-xs mb-2">Se quiser apoiar o projeto, já é possível contribuir via PIX. Toda doação será usada para:</p>
+                                <ul className="text-xs space-y-1 text-slate-400">
                                     <li>• Subir o site em um servidor (VPS) melhor e mais estável</li>
                                     <li>• Registrar um domínio próprio</li>
                                     <li>• Investir em recursos que aumentem a performance, segurança e funcionalidades da plataforma</li>
@@ -88,47 +88,36 @@ const WelcomeModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                             </div>
                         </div>
 
-                        <p className="text-sm text-slate-400">
+                        <p className="text-xs text-slate-400">
                             Mesmo que você não possa doar, só de acompanhar, divulgar ou contribuir com ideias já está ajudando muito. Fique à vontade para explorar, acompanhar as atualizações e fazer parte dessa construção!
                         </p>
                     </div>
 
-                    {/* Links */}
-                    <div className="space-y-4">
+                    {/* Links - Removido GitHub */}
+                    <div className="space-y-3">
                         <div className="grid grid-cols-2 gap-3">
                             <a 
                                 href="/donate" 
-                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-red-600/20 to-pink-600/20 hover:from-red-600/30 hover:to-pink-600/30 border border-red-600/30 rounded-xl transition-all duration-300 text-red-400 hover:text-red-300"
+                                className="flex items-center justify-center gap-2 p-2.5 bg-gradient-to-r from-red-600/20 to-pink-600/20 hover:from-red-600/30 hover:to-pink-600/30 border border-red-600/30 rounded-lg transition-all duration-300 text-red-400 hover:text-red-300"
                             >
                                 <Heart className="h-4 w-4" />
                                 <span className="text-sm font-medium">Doação</span>
                             </a>
                             <a 
                                 href="/about" 
-                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 hover:from-blue-600/30 hover:to-cyan-600/30 border border-blue-600/30 rounded-xl transition-all duration-300 text-blue-400 hover:text-blue-300"
+                                className="flex items-center justify-center gap-2 p-2.5 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 hover:from-blue-600/30 hover:to-cyan-600/30 border border-blue-600/30 rounded-lg transition-all duration-300 text-blue-400 hover:text-blue-300"
                             >
                                 <Info className="h-4 w-4" />
                                 <span className="text-sm font-medium">Sobre</span>
                             </a>
                         </div>
-                        
-                        <div className="grid grid-cols-2 gap-3">
-                            <a 
-                                href="#" 
-                                className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-purple-600/20 to-violet-600/20 hover:from-purple-600/30 hover:to-violet-600/30 border border-purple-600/30 rounded-xl transition-all duration-300 text-purple-400 hover:text-purple-300"
-                            >
-                                <Github className="h-4 w-4" />
-                                <span className="text-sm font-medium">GitHub</span>
-                            </a>
-                    
-                        </div>
                     </div>
 
                     {/* Close Button */}
-                    <div className="text-center pt-4">
+                    <div className="text-center pt-3">
                         <button
                             onClick={onClose}
-                            className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                            className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
                         >
                             Começar a usar
                         </button>
@@ -300,16 +289,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onVideoSelect, error }) => {
 
     return (
         <div className="relative">
-            {/* Controle de Visibilidade */}
-            <div className="fixed top-4 right-4 z-40">
-                <button
-                    onClick={() => setShowContent(!showContent)}
-                    className="flex items-center gap-2 bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 text-white px-4 py-2 rounded-xl hover:bg-slate-700/80 transition-all duration-300"
-                >
-                    {showContent ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                    <span className="text-sm">{showContent ? 'Ocultar' : 'Mostrar'}</span>
-                </button>
-            </div>
+            {/* Controle de Visibilidade - Só aparece quando o modal não está visível */}
+            {!showWelcome && (
+                <div className="fixed top-4 right-4 z-40">
+                    <button
+                        onClick={() => setShowContent(!showContent)}
+                        className="flex items-center gap-2 bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 text-white px-4 py-2 rounded-xl hover:bg-slate-700/80 transition-all duration-300"
+                    >
+                        {showContent ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        <span className="text-sm">{showContent ? 'Ocultar' : 'Mostrar'}</span>
+                    </button>
+                </div>
+            )}
 
             {/* Modal de Boas-vindas */}
             {showWelcome && <WelcomeModal onClose={handleCloseWelcome} />}
